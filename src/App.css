@@ -1,0 +1,9 @@
+body {
+  background-color: rgb(9 52 122);
+  min-height: 100vh;
+}
+
+.logo {
+  text-align: center;
+  margin: 50px;
+}

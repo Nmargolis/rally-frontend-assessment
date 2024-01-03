@@ -1,0 +1,92 @@
+[
+  {
+    "firstName": "Taylor",
+    "lastName": "Swift",
+    "city": "West Reading",
+    "state": "PA",
+    "address": "1989 Blank Pl.",
+    "age": 41,
+    "voterfileId": "PA-41235324"
+  },
+  {
+    "firstName": "Kelly",
+    "lastName": "Clarkson",
+    "city": "Fort Worth",
+    "state": "TX",
+    "address": "2004 Walk A Way",
+    "age": 38,
+    "voterfileId": "TX-234312"
+  },
+  {
+    "firstName": "Beyonce",
+    "lastName": "Knowles",
+    "city": "Houston",
+    "state": "TX",
+    "address": "2003 Formation Rd.",
+    "age": 39,
+    "voterfileId": "TX-223122"
+  },
+  {
+    "firstName": "Tracy",
+    "lastName": "Chapman",
+    "city": "Cleveland",
+    "state": "OH",
+    "address": "1988 Fast Car Ave.",
+    "age": 56,
+    "voterfileId": "OH-2122222"
+  },
+  {
+    "firstName": "Natalie",
+    "lastName": "Merchant",
+    "city": "Jamestown",
+    "state": "NY",
+    "address": "1985 Wonder Pl.",
+    "age": 57,
+    "voterfileId": "NY-4731292"
+  },
+  {
+    "firstName": "Vanessa",
+    "lastName": "Carlton",
+    "city": "Milford",
+    "state": "PA",
+    "address": "2002 Thousand Miles Rd.",
+    "age": 40,
+    "voterfileId": "PA-41235222"
+  },
+  {
+    "firstName": "Alicia",
+    "lastName": "Keys",
+    "city": "New York",
+    "state": "NY",
+    "address": "2001 Empire State Ave.",
+    "age": 39,
+    "voterfileId": "NY-4731293"
+  },
+  {
+    "firstName": "Donna",
+    "lastName": "Summer",
+    "city": "Boston",
+    "state": "MA",
+    "address": "1979 Hot Stuff Rd.",
+    "age": 71,
+    "voterfileId": "MA-123122"
+  },
+  {
+    "firstName": "Lisa",
+    "lastName": "Loeb",
+    "city": "Dallas",
+    "state": "TX",
+    "address": "1994 Stay Pl.",
+    "age": 52,
+    "voterfileId": "TX-234312"
+  },
+  {
+    "firstName": "Solange",
+    "lastName": "Knowles",
+    "city": "Houston",
+    "state": "TX",
+    "address": "2008 Mad Rd.",
+    "age": 34,
+    "voterfileId": "TX-223122"
+  }
+]
