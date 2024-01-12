@@ -4,12 +4,16 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 
 export const VoterForm = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
   return (
     <form
       onSubmit={(event) => {
         event?.preventDefault();
-        console.warn(event);
+        console.warn({firstName, lastName, city, state});
       }}
     >
       <TextField
@@ -18,6 +22,11 @@ export const VoterForm = () => {
         variant="outlined"
         fullWidth
         margin="normal"
+        value={firstName}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            console.warn('change to firstNAme', event.target.value)
+          setFirstName(event.target.value);
+        }}
       />
       <TextField
         id="last-name-input"
@@ -25,6 +34,10 @@ export const VoterForm = () => {
         variant="outlined"
         fullWidth
         margin="normal"
+        value={lastName}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setLastName(event.target.value);
+        }}
       />
       <TextField
         id="city-input"
@@ -32,6 +45,10 @@ export const VoterForm = () => {
         variant="outlined"
         margin="normal"
         sx={{ width: "50%" }}
+        value={city}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setCity(event.target.value);
+        }}
       />
       {/* TODO: a dropdown or autocomplete might be helpful */}
       <TextField
@@ -40,6 +57,10 @@ export const VoterForm = () => {
         variant="outlined"
         margin="normal"
         sx={{ width: "50%" }}
+        value={state}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setState(event.target.value);
+        }}
       />
       <Button
         variant="outlined"
