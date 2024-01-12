@@ -2,7 +2,7 @@
 // If not, switch to default imports from specific paths e.g. import FormControl from "@mui/material/FormControl"
 import { Button, TextField } from "@mui/material";
 import { useState, Dispatch, SetStateAction } from "react";
-import { MatchData, SearchData, searchVoterfile } from "./api";
+import { MatchData, SearchData, searchVoterfile } from "../api";
 
 export interface VoterFormProps {
     setMatchData: Dispatch<SetStateAction<MatchData[]>>

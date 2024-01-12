@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { MatchData, createContactFromVoter } from "./api";
+import { MatchData, createContactFromVoter } from "../api";
 
 // TODO: extend React component props
 export interface VoterResultsProps {

@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { SearchData, createContactFromFields } from "./api";
+import { SearchData, createContactFromFields } from "../api";
 
 // TODO: extend react component props
 export interface CreateContactProps {

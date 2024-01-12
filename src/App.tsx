@@ -3,10 +3,10 @@ import { Container } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 import "./App.css";
-import { VoterSearchForm } from "./VoterSearchForm";
-import { VoterResults } from "./VoterResults";
+import { VoterSearchForm } from "./components/VoterSearchForm";
+import { VoterResults } from "./components/VoterResults";
 import { MatchData, SearchData } from "./api";
-import { CreateContact } from "./CreateContact";
+import { CreateContact } from "./components/CreateContact";
 
 /**
  * Entry point component for the application.
