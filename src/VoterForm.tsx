@@ -1,9 +1,15 @@
 // If tree shaking is being used, it will handle tree shaking with this syntax.
 // If not, switch to default imports from specific paths e.g. import FormControl from "@mui/material/FormControl"
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
+import { MatchData, SearchData, searchVoterfile } from "./api";
 
-export const VoterForm = () => {
+export interface VoterFormProps {
+    setMatchData: Dispatch<SetStateAction<MatchData[]>>
+    setSearchData: Dispatch<SetStateAction<SearchData | undefined>>
+}
+
+export const VoterForm = ({setMatchData, setSearchData}: VoterFormProps) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [city, setCity] = useState("");
@@ -11,9 +17,18 @@ export const VoterForm = () => {
 
   return (
     <form
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event?.preventDefault();
-        console.warn({firstName, lastName, city, state});
+        // TODO: validation, or in the onChanges, or figure out how to do with Material UI
+        try {
+            const searchFields = {firstName, lastName, city, state}
+            const matchData = await searchVoterfile({firstName, lastName, city, state})
+            setMatchData(matchData);
+            setSearchData(searchFields);
+        }
+        catch (error) {
+            console.error(error)
+        }
       }}
     >
       <TextField
@@ -22,9 +37,9 @@ export const VoterForm = () => {
         variant="outlined"
         fullWidth
         margin="normal"
+        autoComplete="off"
         value={firstName}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            console.warn('change to firstNAme', event.target.value)
           setFirstName(event.target.value);
         }}
       />
@@ -34,6 +49,7 @@ export const VoterForm = () => {
         variant="outlined"
         fullWidth
         margin="normal"
+        autoComplete="off"
         value={lastName}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setLastName(event.target.value);
@@ -44,6 +60,7 @@ export const VoterForm = () => {
         label="City"
         variant="outlined"
         margin="normal"
+        autoComplete="off"
         sx={{ width: "50%" }}
         value={city}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +73,7 @@ export const VoterForm = () => {
         label="State"
         variant="outlined"
         margin="normal"
+        autoComplete="off"
         sx={{ width: "50%" }}
         value={state}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
