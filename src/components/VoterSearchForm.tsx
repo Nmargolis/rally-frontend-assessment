@@ -90,6 +90,7 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
       >
         Search
       </Button>
+
     </form>
   );
 };
