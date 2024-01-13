@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { MatchData, createContactFromVoter } from "../api";
 
 // TODO: extend React component props
@@ -17,6 +17,7 @@ export const VoterResults = ({
 }: VoterResultsProps) => {
   return (
     <>
+      {!matchData.length && <p>No matching voters found.</p>}
       {matchData.map((match) => {
         const { voterfileId, firstName, lastName, city, state, score } = match;
         const addContactHandler = async () => {

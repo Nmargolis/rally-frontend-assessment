@@ -1,38 +1,37 @@
-// If tree shaking is being used, it will handle tree shaking with this syntax.
-// If not, switch to default imports from specific paths e.g. import FormControl from "@mui/material/FormControl"
 import { Button, TextField } from "@mui/material";
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { MatchData, SearchData, searchVoterfile } from "../api";
 
 export interface VoterFormProps {
-    setMatchData: Dispatch<SetStateAction<MatchData[]>>
-    setSearchData: Dispatch<SetStateAction<SearchData | undefined>>
+  searchData: SearchData;
+  setMatchData: Dispatch<SetStateAction<MatchData[]>>;
+  setSearchData: Dispatch<SetStateAction<SearchData>>;
+  setHasSearched: Dispatch<SetStateAction<boolean>>;
 }
 
-export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+export const VoterSearchForm = ({
+  searchData,
+  setMatchData,
+  setSearchData,
+  setHasSearched,
+}: VoterFormProps) => {
+  const { firstName, lastName, city, state } = searchData;
 
-  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
-    // TODO: validation if all fields are required, or with Material UI
+    // TODO: validation if all fields are required, or add required Material UI prop
     try {
-        const searchFields = {firstName, lastName, city, state}
-        const matchData = await searchVoterfile(searchFields)
-        setMatchData(matchData);
-        setSearchData(searchFields);
+      const searchFields = { firstName, lastName, city, state };
+      const matchData = await searchVoterfile(searchFields);
+      setMatchData(matchData);
+    } catch (error: any) {
+      console.error(error);
+      alert(`Error searching. ${JSON.stringify(error?.message)}`);
     }
-    catch (error: any) {
-        console.error(error)
-        alert(`Error searching. ${JSON.stringify(error?.message)}`);
-    }
-  }
+    setHasSearched(true);
+  };
   return (
-    <form
-      onSubmit={handleSubmit}
-    >
+    <form onSubmit={handleSubmit}>
       <TextField
         id="first-name-input"
         label="First Name"
@@ -42,7 +41,8 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
         autoComplete="off"
         value={firstName}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setFirstName(event.target.value);
+          setHasSearched(false);
+          setSearchData({ ...searchData, firstName: event.target.value });
         }}
       />
       <TextField
@@ -54,7 +54,8 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
         autoComplete="off"
         value={lastName}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setLastName(event.target.value);
+          setHasSearched(false);
+          setSearchData({ ...searchData, lastName: event.target.value });
         }}
       />
       <TextField
@@ -66,7 +67,8 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
         sx={{ width: "50%" }}
         value={city}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setCity(event.target.value);
+          setHasSearched(false);
+          setSearchData({ ...searchData, city: event.target.value });
         }}
       />
       {/* TODO: a dropdown or autocomplete might be helpful */}
@@ -79,7 +81,8 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
         sx={{ width: "50%" }}
         value={state}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setState(event.target.value);
+          setHasSearched(false);
+          setSearchData({ ...searchData, state: event.target.value });
         }}
       />
       <Button
@@ -90,7 +93,6 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
       >
         Search
       </Button>
-
     </form>
   );
 };
