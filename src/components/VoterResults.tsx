@@ -18,7 +18,7 @@ export const VoterResults = ({
   return (
     <>
       {!matchData.length && <p>No matching voters found.</p>}
-      {matchData.map((match) => {
+      {matchData.sort((matchA, matchB) => (matchB.score - matchA.score)).map((match) => {
         const { voterfileId, firstName, lastName, city, state, score } = match;
         const addContactHandler = async () => {
           try {
