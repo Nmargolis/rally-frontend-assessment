@@ -15,21 +15,23 @@ export const VoterSearchForm = ({setMatchData, setSearchData}: VoterFormProps) =
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
+  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
+    // TODO: validation if all fields are required, or with Material UI
+    try {
+        const searchFields = {firstName, lastName, city, state}
+        const matchData = await searchVoterfile(searchFields)
+        setMatchData(matchData);
+        setSearchData(searchFields);
+    }
+    catch (error: any) {
+        console.error(error)
+        alert(`Error searching. ${JSON.stringify(error?.message)}`);
+    }
+  }
   return (
     <form
-      onSubmit={async (event) => {
-        event?.preventDefault();
-        // TODO: validation, or in the onChanges, or figure out how to do with Material UI
-        try {
-            const searchFields = {firstName, lastName, city, state}
-            const matchData = await searchVoterfile({firstName, lastName, city, state})
-            setMatchData(matchData);
-            setSearchData(searchFields);
-        }
-        catch (error) {
-            console.error(error)
-        }
-      }}
+      onSubmit={handleSubmit}
     >
       <TextField
         id="first-name-input"

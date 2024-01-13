@@ -12,20 +12,18 @@ import { CreateContact } from "./components/CreateContact";
  * Entry point component for the application.
  */
 function App() {
-  // TODO: type
   const [matchData, setMatchData] = useState<MatchData[]>([]);
   const [searchData, setSearchData] = useState<SearchData>();
   return (
     <Container maxWidth="lg" sx={{ paddingTop: "20px" }}>
-      {/* TODO: Add components for a search form and to display the results */}
       <Container component="section" maxWidth="md" sx={{ backgroundColor: grey[50], padding: "20px"}}>
         <VoterSearchForm setMatchData={setMatchData} setSearchData={setSearchData}/>
         {matchData && <VoterResults matchData={matchData}/>}
-        {/* TODO: handle state changes from form updates after submit, or make all fields required in original form */}
+        {/* TODO: handle state changes from form updates after submit by lifting
+         up searchFields state, or make all fields required in original form */}
         {searchData && <CreateContact searchData={searchData}></CreateContact>
        }
       </Container>
-
     </Container>
   );
 }

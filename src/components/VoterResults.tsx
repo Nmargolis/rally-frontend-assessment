@@ -7,10 +7,19 @@ export interface VoterResultsProps {
 }
 
 export const VoterResults = ({ matchData }: VoterResultsProps) => {
+ 
   return (
     <>
       {matchData.map((match) => {
         const { voterfileId, firstName, lastName, city, state, score } = match;
+        const addContactHandler = async() => {
+          try {
+            await createContactFromVoter(voterfileId);
+            alert(`${firstName} ${lastName} has been added to your contacts.`);
+          } catch (error) {
+            console.error(`Error adding ${firstName} ${lastName} with id ${voterfileId}`);
+          }
+        }
         return (
           <Box
             key={voterfileId}
@@ -25,14 +34,7 @@ export const VoterResults = ({ matchData }: VoterResultsProps) => {
             <p>City: {city}, {state}</p>
             <Button
               variant="outlined"
-              onClick={async () => {
-                try {
-                  await createContactFromVoter(voterfileId);
-                  alert(`${firstName} ${lastName} has been added to your contacts.`);
-                } catch (error) {
-                  console.error(`Error adding ${firstName} ${lastName} with id ${voterfileId}`);
-                }
-              }}
+              onClick={addContactHandler}
             >
               Add
             </Button>
